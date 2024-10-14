@@ -29,8 +29,9 @@ const App = () => {
     }
   };
 
-  const filterTasks = (status) => {
-    return tasks.filter((task) => task.status === status);
+  const handleDelete = (index) => {
+    const newTasks = tasks.filter((task, i) => i !== index);
+    setTasks(newTasks);
   }
 
   const clearCompleted = () => {
@@ -54,20 +55,13 @@ const App = () => {
               : "bg-[url('./assets/images/bg-desktop-light.jpg')]"
           }`}
         ></div>
-        <div className="absolute top-14 w-1/3 h-96  items-center">
+        <div className="absolute top-12 w-1/2 h-96  items-center">
           <header
             className={`flex justify-between bg-image ${
               isDarkMode ? "bg-dark" : "bg-light"
             }`}
           >
-            <h1
-              className={`text-4xl ${
-                isDarkMode ? " text-white" : " text-black"
-              }`}
-            >
-              {" "}
-              T O D O{" "}
-            </h1>
+            <h1 className={`text-5xl text-white`}> T O D O </h1>
             <button
               className={` w-6 h-[26px] rounded ${
                 isDarkMode
@@ -80,7 +74,7 @@ const App = () => {
           <main className="mt-4">
             <input
               type="text"
-              className={`h-10 w-full pl-10 rounded-md ${
+              className={`h-14 w-full pl-10 rounded-md ${
                 isDarkMode ? "bg-black" : "bg-white"
               }`}
               name="newTask"
@@ -88,30 +82,46 @@ const App = () => {
               placeholder="Create a new todo.."
               onKeyDown={handleKeyDown}
             />
-            <div className="mt-4">
-              {tasks.filter((task) => (task.status == filter) || (filter == 'all') ).map((task, index) => (
-                <Task
-                  key={index}
-                  index={index}
-                  status={task.status}
-                  title={task.title}
-                  isDarkMode={isDarkMode}
-                  toggleComplete={toggleComplete}
-                />
-              ))}
-              <div className="flex justify-between items-center">
-                <div>
+            <div className="mt-4 shadow-lg">
+              {tasks
+                .filter((task) => task.status == filter || filter == "all")
+                .map((task, index) => (
+                  <Task
+                    key={index}
+                    index={index}
+                    status={task.status}
+                    title={task.title}
+                    isDarkMode={isDarkMode}
+                    toggleComplete={toggleComplete}
+                    handleDelete={handleDelete}
+                  />
+                ))}
+              {/* FOOTER */}
+              <footer
+                className={`shadow-lg flex justify-between items-center py-3 rounded-b-lg border-b-[1px] border-b-neutral-lightGrayishBlue ${
+                  isDarkMode ? "bg-neutral-veryDarkGrayishBlue" : "bg-white"
+                }`}
+              >
+                <div className="ml-5">
                   <a href="#">{itemsLeft} Items left</a>
                 </div>
                 <div className="flex justify-center items-center gap-2">
-                  <a href="#" onClick={() => setFilter('all')}>All</a>
-                  <a href="#" onClick={() => setFilter('active')}>Active</a>
-                  <a href="#" onClick={() => setFilter('completed')}>Completed</a>
+                  <a href="#" onClick={() => setFilter("all")}>
+                    All
+                  </a>
+                  <a href="#" onClick={() => setFilter("active")}>
+                    Active
+                  </a>
+                  <a href="#" onClick={() => setFilter("completed")}>
+                    Completed
+                  </a>
                 </div>
-                <div>
-                  <a href="#" onClick={clearCompleted}>Clear completed</a>
+                <div className="mr-5">
+                  <a href="#" onClick={clearCompleted}>
+                    Clear completed
+                  </a>
                 </div>
-              </div>
+              </footer>
             </div>
           </main>
         </div>
