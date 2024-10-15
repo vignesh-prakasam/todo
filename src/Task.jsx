@@ -1,3 +1,6 @@
+
+import "./App.css";
+
 export default function Task({
   index,
   status,
@@ -9,32 +12,33 @@ export default function Task({
   return (
     <>
       <div
-        className={` ${index === 0 ? "rounded-t-lg" : ""}  flex justify-start items-center py-2 border-b-[1px] border-b-neutral-lightGrayishBlue ${
-          isDarkMode ? "bg-neutral-veryDarkGrayishBlue" : "bg-white"
+      className={` ${index === 0 ? "rounded-t-lg" : ""} text-neutral-darkGrayishBlue shadow-lg flex justify-start items-center py-2 border-b-[0.5px] border-b-darkTheme-veryDarkGrayishBlue1 ${
+        isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue" : "bg-white"
+      }`}
+      >
+      <input
+        className={`size-7 rounded-full ml-5 checkbox border-[1px] ${isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue border-darkTheme-veryDarkGrayishBlue1" : "border-neutral-veryLightGrayishBlue"}`}
+        type="checkbox"
+        name="state"
+        id="state"
+        onChange={() => toggleComplete(index)}
+        checked={status === "completed"}
+      />
+      <span
+        className={`ml-5 py-3 text-2xl ${isDarkMode ? "text-darkTheme-lightGrayishBlue" : "text-neutral-veryDarkGrayishBlue"} ${
+        status === "completed" ? "line-through text-darkTheme-darkGrayishBlue" : ""
         }`}
       >
-        <input
-          className={`size-10 rounded-full ml-5`}
-          type="checkbox"
-          name="state"
-          id="state"
-          onChange={() => toggleComplete(index)}
-        />
-        <span
-          className={`text-xl ${isDarkMode ? "text-white" : "text-black"} ${
-            status === "completed" ? "line-through" : ""
-          }`}
-        >
-          {" "}
-          {title}{" "}
-        </span>
-        <div className="flex justify-end items-center flex-grow mr-5">
-          <button
-          onClick={() => handleDelete(index)}
-          className="bg-[url('./assets/images/icon-cross.svg')] w-[18px] h-[18px]"
-          ></button>
-        </div>
+        {" "}
+        {title}{" "}
+      </span>
+      <div className="flex justify-end items-center flex-grow mr-5">
+        <button
+        onClick={() => handleDelete(index)}
+        className="bg-[url('./assets/images/icon-cross.svg')] w-[18px] h-[18px]"
+        ></button>
+      </div>
       </div>
     </>
-  );
+    );
 }

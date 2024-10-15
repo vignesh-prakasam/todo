@@ -45,7 +45,7 @@ const App = () => {
     <>
       <div
         className={`relative flex flex-col justify-center items-center min-h-screen ${
-          isDarkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+          isDarkMode ? "bg-darkTheme-veryDarkBlue text-darkTheme-darkGrayishBlue" : "bg-white text-black"
         }`}
       >
         <div
@@ -74,8 +74,8 @@ const App = () => {
           <main className="mt-4">
             <input
               type="text"
-              className={`h-14 w-full pl-10 rounded-md ${
-                isDarkMode ? "bg-black" : "bg-white"
+              className={`h-14 text-2xl  w-full pl-10 rounded-md ${
+                isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue text-darkTheme-lightGrayishBlue" : "bg-white"
               }`}
               name="newTask"
               id="newTask"
@@ -98,21 +98,21 @@ const App = () => {
                 ))}
               {/* FOOTER */}
               <footer
-                className={`shadow-lg flex justify-between items-center py-3 rounded-b-lg border-b-[1px] border-b-neutral-lightGrayishBlue ${
-                  isDarkMode ? "bg-neutral-veryDarkGrayishBlue" : "bg-white"
+                className={` text-neutral-darkGrayishBlue  shadow-lg flex justify-between items-center py-3 rounded-b-lg  border-b-neutral-lightGrayishBlue ${
+                  isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue" : "bg-white"
                 }`}
               >
                 <div className="ml-5">
                   <a href="#">{itemsLeft} Items left</a>
                 </div>
                 <div className="flex justify-center items-center gap-2">
-                  <a href="#" onClick={() => setFilter("all")}>
+                  <a href="#" className={`${filter == "all" ? "text-primary-brightBlue" : ""} hover:text-neutral-veryDarkGrayishBlue`} onClick={() => setFilter("all")}>
                     All
                   </a>
-                  <a href="#" onClick={() => setFilter("active")}>
+                  <a href="#" className={`${filter == "active" ? "text-primary-brightBlue" : ""} hover:text-neutral-veryDarkGrayishBlue`} onClick={() => setFilter("active")}>
                     Active
                   </a>
-                  <a href="#" onClick={() => setFilter("completed")}>
+                  <a href="#" className={`${filter == "completed" ? "text-primary-brightBlue" : ""} hover:text-neutral-veryDarkGrayishBlue`} onClick={() => setFilter("completed")}>
                     Completed
                   </a>
                 </div>
