@@ -7,7 +7,26 @@ import bgLight from "./assets/images/bg-desktop-light.jpg";
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([
+    {
+      title: "Complete online JavaScript course", status: "completed"
+    },
+    {
+      title: "Jog around the park 3x", status: "active"
+    },
+    {
+      title: "10 minutes meditation", status: "active"
+    },
+    {
+      title: "Read for 1 hour", status: "active"
+    },
+    {
+      title: "Pick up groceries", status: "active"
+    },
+    {
+      title: "Complete Todo App on Frontend Mentor", status: "active"
+    },
+  ]);
   const [filter, setFilter] = useState("all");
 
   const toggleTheme = () => {
@@ -59,9 +78,7 @@ const App = () => {
         ></div>
         <div className="absolute top-12 sm:w-1/2 w-full px-10 h-96  items-center">
           <header
-            className={`flex justify-between bg-image ${
-              isDarkMode ? "bg-dark" : "bg-light"
-            }`}
+            className={`flex justify-between`}
           >
             <h1 className={`text-5xl text-white`}> T O D O </h1>
             <button
@@ -86,7 +103,7 @@ const App = () => {
               placeholder="Create a new todo.."
               onKeyDown={handleKeyDown}
             />
-            <div className="mt-4 shadow-lg">
+            <div className="mt-4 ">
               {tasks
                 .filter((task) => task.status == filter || filter == "all")
                 .map((task, index) => (
@@ -101,7 +118,7 @@ const App = () => {
                   />
                 ))}
               <div
-                className={`sm:hidden text-neutral-darkGrayishBlue py-5 mt-0 shadow-lg flex justify-between items-center rounded-b-lg  border-b-neutral-lightGrayishBlue ${
+                className={`sm:hidden text-neutral-darkGrayishBlue py-5 mt-0 shadow-xl flex justify-between items-center rounded-b-lg  border-b-neutral-lightGrayishBlue ${
                   isDarkMode
                     ? "bg-darkTheme-veryDarkDesaturatedBlue"
                     : "bg-white"
@@ -127,9 +144,7 @@ const App = () => {
               {/* FOOTER */}
               <footer
                 className={` text-neutral-darkGrayishBlue sm:mt-0 mt-5  shadow-lg flex justify-between items-center py-3 rounded-b-lg rounded-t-lg rounded-t-0  border-b-neutral-lightGrayishBlue ${
-                  isDarkMode
-                    ? "bg-darkTheme-veryDarkDesaturatedBlue"
-                    : "bg-white"
+                  isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue" : "bg-white"
                 }`}
               >
                 <div className="ml-5">

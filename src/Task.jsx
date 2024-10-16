@@ -9,6 +9,8 @@ export default function Task({
   toggleComplete,
   handleDelete
 }) {
+  // console.log(isDarkMode + "===dark mode");
+  // console.log(status + "===status");
   return (
     <>
       <div
@@ -25,8 +27,8 @@ export default function Task({
         checked={status === "completed"}
       />
       <span
-        className={`ml-5 py-3 text-2xl ${isDarkMode ? "text-darkTheme-lightGrayishBlue" : "text-neutral-veryDarkGrayishBlue"} ${
-        status === "completed" ? "line-through text-darkTheme-darkGrayishBlue" : ""
+        className={`ml-5 py-3 text-2xl ${(isDarkMode && status != "completed") ? "text-darkTheme-lightGrayishBlue" : "text-neutral-veryDarkGrayishBlue"} ${
+        status === "completed" ? (isDarkMode ? 'line-through text-darkTheme-darkGrayishBlue' : 'line-through text-lightTheme-darkGrayishBlue') : ""
         }`}
       >
         {" "}
