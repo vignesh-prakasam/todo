@@ -143,7 +143,7 @@ const App = () => {
               </div>
               {/* FOOTER */}
               <footer
-                className={` text-neutral-darkGrayishBlue sm:mt-0 mt-5  shadow-lg flex justify-between items-center py-3 rounded-b-lg rounded-t-lg rounded-t-0  border-b-neutral-lightGrayishBlue ${
+                className={` text-neutral-darkGrayishBlue sm:mt-0 mt-5  shadow-lg flex justify-between items-center py-3 rounded-b-lg sm:rounded-t-none  rounded-t-lg  border-b-neutral-lightGrayishBlue ${
                   isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue" : "bg-white"
                 }`}
               >
