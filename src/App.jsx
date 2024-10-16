@@ -32,7 +32,7 @@ const App = () => {
   const handleDelete = (index) => {
     const newTasks = tasks.filter((task, i) => i !== index);
     setTasks(newTasks);
-  }
+  };
 
   const clearCompleted = () => {
     const newTasks = tasks.filter((task) => task.status === "active");
@@ -45,17 +45,19 @@ const App = () => {
     <>
       <div
         className={`relative flex flex-col justify-center items-center min-h-screen ${
-          isDarkMode ? "bg-darkTheme-veryDarkBlue text-darkTheme-darkGrayishBlue" : "bg-white text-black"
+          isDarkMode
+            ? "bg-darkTheme-veryDarkBlue text-darkTheme-darkGrayishBlue"
+            : "bg-white text-black"
         }`}
       >
         <div
-          className={`absolute top-0 w-full h-[300px] ${
+          className={`absolute top-0  w-full h-[300px] ${
             isDarkMode
               ? "bg-[url('./assets/images/bg-desktop-dark.jpg')]"
               : "bg-[url('./assets/images/bg-desktop-light.jpg')]"
           }`}
         ></div>
-        <div className="absolute top-12 w-1/2 h-96  items-center">
+        <div className="absolute top-12 sm:w-1/2 w-full px-10 h-96  items-center">
           <header
             className={`flex justify-between bg-image ${
               isDarkMode ? "bg-dark" : "bg-light"
@@ -74,8 +76,10 @@ const App = () => {
           <main className="mt-4">
             <input
               type="text"
-              className={`h-14 text-2xl  w-full pl-10 rounded-md ${
-                isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue text-darkTheme-lightGrayishBlue" : "bg-white"
+              className={`h-14 text-2xl  w-full pl-11 rounded-md ${
+                isDarkMode
+                  ? "bg-darkTheme-veryDarkDesaturatedBlue text-darkTheme-lightGrayishBlue"
+                  : "bg-white"
               }`}
               name="newTask"
               id="newTask"
@@ -96,28 +100,78 @@ const App = () => {
                     handleDelete={handleDelete}
                   />
                 ))}
+              <div
+                className={`sm:hidden text-neutral-darkGrayishBlue py-5 mt-0 shadow-lg flex justify-between items-center rounded-b-lg  border-b-neutral-lightGrayishBlue ${
+                  isDarkMode
+                    ? "bg-darkTheme-veryDarkDesaturatedBlue"
+                    : "bg-white"
+                }`}
+              >
+                  <div className="ml-5">
+                    <a href="#" className="">
+                      {itemsLeft} Items left
+                    </a>
+                  </div>
+
+                  <div className="mr-5">
+                  <a
+                    href="#"
+                    className=""
+                    onClick={clearCompleted}
+                  >
+                    Clear completed
+                  </a>
+                </div>
+
+              </div>
               {/* FOOTER */}
               <footer
-                className={` text-neutral-darkGrayishBlue  shadow-lg flex justify-between items-center py-3 rounded-b-lg  border-b-neutral-lightGrayishBlue ${
-                  isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue" : "bg-white"
+                className={` text-neutral-darkGrayishBlue sm:mt-0 mt-5  shadow-lg flex justify-between items-center py-3 rounded-b-lg rounded-t-lg rounded-t-0  border-b-neutral-lightGrayishBlue ${
+                  isDarkMode
+                    ? "bg-darkTheme-veryDarkDesaturatedBlue"
+                    : "bg-white"
                 }`}
               >
                 <div className="ml-5">
-                  <a href="#">{itemsLeft} Items left</a>
+                  <a href="#" className="hidden sm:block">
+                    {itemsLeft} Items left
+                  </a>
                 </div>
-                <div className="flex justify-center items-center gap-2">
-                  <a href="#" className={`${filter == "all" ? "text-primary-brightBlue" : ""} hover:text-neutral-veryDarkGrayishBlue`} onClick={() => setFilter("all")}>
+                <div className="flex justify-center items-center sm:gap-2 gap-10 text-xl sm:text-md">
+                  <a
+                    href="#"
+                    className={`${
+                      filter == "all" ? "text-primary-brightBlue" : ""
+                    } hover:text-neutral-veryDarkGrayishBlue`}
+                    onClick={() => setFilter("all")}
+                  >
                     All
                   </a>
-                  <a href="#" className={`${filter == "active" ? "text-primary-brightBlue" : ""} hover:text-neutral-veryDarkGrayishBlue`} onClick={() => setFilter("active")}>
+                  <a
+                    href="#"
+                    className={`${
+                      filter == "active" ? "text-primary-brightBlue" : ""
+                    } hover:text-neutral-veryDarkGrayishBlue`}
+                    onClick={() => setFilter("active")}
+                  >
                     Active
                   </a>
-                  <a href="#" className={`${filter == "completed" ? "text-primary-brightBlue" : ""} hover:text-neutral-veryDarkGrayishBlue`} onClick={() => setFilter("completed")}>
+                  <a
+                    href="#"
+                    className={`${
+                      filter == "completed" ? "text-primary-brightBlue" : ""
+                    } hover:text-neutral-veryDarkGrayishBlue`}
+                    onClick={() => setFilter("completed")}
+                  >
                     Completed
                   </a>
                 </div>
                 <div className="mr-5">
-                  <a href="#" onClick={clearCompleted}>
+                  <a
+                    href="#"
+                    className="hidden sm:block"
+                    onClick={clearCompleted}
+                  >
                     Clear completed
                   </a>
                 </div>

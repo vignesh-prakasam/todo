@@ -7,7 +7,7 @@
 .checkbox:checked {
   background-image: url('./assets/images/icon-check.svg'), linear-gradient(to right, skyblue, violet); /* Path to your SVG and gradient */
   background-size: auto, cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; 
   background-position: center;
   border-width: 0; 
  /*border-color: green; /* Optional: Change border color when checked */
