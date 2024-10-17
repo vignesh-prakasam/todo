@@ -22,7 +22,9 @@ export default function Task({
       onDragStart={(e) => onDragStart(e, index)}
       onDragEnter={(e) => onDragEnter(e,index)}
       onDragEnd={(e) => onDragEnd(e, index)}
-      className={`   ${index === 0 ? "rounded-t-lg" : ""} text-neutral-darkGrayishBlue shadow-lg flex justify-start items-center py-2 border-b-[0.5px] border-b-darkTheme-veryDarkGrayishBlue1 ${
+      onDragOver={(e) => e.preventDefault()}
+      onDragLeave={(e) => e.preventDefault()}
+      className={` task  ${index === 0 ? "rounded-t-lg" : ""} text-neutral-darkGrayishBlue shadow-lg flex justify-start items-center py-2 border-b-[0.5px] border-b-darkTheme-veryDarkGrayishBlue1 ${
         isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue" : "bg-white"
       }`}
       >
