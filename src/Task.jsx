@@ -1,5 +1,7 @@
 
 import "./App.css";
+import React, { useState } from 'react'
+
 
 export default function Task({
   index,
@@ -7,14 +9,20 @@ export default function Task({
   title,
   isDarkMode,
   toggleComplete,
-  handleDelete
+  handleDelete,
+  onDragStart,
+  onDragEnter,
+  onDragEnd
 }) {
-  // console.log(isDarkMode + "===dark mode");
-  // console.log(status + "===status");
+
   return (
     <>
       <div
-      className={` ${index === 0 ? "rounded-t-lg" : ""} text-neutral-darkGrayishBlue shadow-lg flex justify-start items-center py-2 border-b-[0.5px] border-b-darkTheme-veryDarkGrayishBlue1 ${
+      draggable="true"
+      onDragStart={(e) => onDragStart(e, index)}
+      onDragEnter={(e) => onDragEnter(e,index)}
+      onDragEnd={(e) => onDragEnd(e, index)}
+      className={`   ${index === 0 ? "rounded-t-lg" : ""} text-neutral-darkGrayishBlue shadow-lg flex justify-start items-center py-2 border-b-[0.5px] border-b-darkTheme-veryDarkGrayishBlue1 ${
         isDarkMode ? "bg-darkTheme-veryDarkDesaturatedBlue" : "bg-white"
       }`}
       >

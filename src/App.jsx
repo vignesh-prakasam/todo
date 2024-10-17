@@ -7,6 +7,8 @@ import bgLight from "./assets/images/bg-desktop-light.jpg";
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [dragElement, setdragElement] = useState(false);
+  const [draggedOver, setDraggedOver] = useState(false);
   const [tasks, setTasks] = useState([
     {
       title: "Complete online JavaScript course", status: "completed"
@@ -59,6 +61,25 @@ const App = () => {
   };
 
   const itemsLeft = tasks.filter((task) => task.status === "active").length;
+
+  const onDragStart = (e, index) => {
+    setdragElement(index)
+  }
+
+  const onDragEnter = (e, index) => {
+    setDraggedOver(index);
+  }
+
+  // on drag end
+const handleSort = (e, index) => {
+  setdragElement(false);
+  console.log("drag end", index);
+  const newTasks = [...tasks];
+  const draggedTask = newTasks[dragElement];
+  newTasks.splice(dragElement, 1);
+  newTasks.splice(draggedOver, 0, draggedTask);
+  setTasks(newTasks);
+}
 
   return (
     <>
@@ -115,6 +136,9 @@ const App = () => {
                     isDarkMode={isDarkMode}
                     toggleComplete={toggleComplete}
                     handleDelete={handleDelete}
+                    onDragStart={onDragStart}
+                    onDragEnter={onDragEnter}
+                    onDragEnd={handleSort}
                   />
                 ))}
               <div
